@@ -9,13 +9,24 @@ FuzzyMatcher is a a python package exposed through a flask app that suggests **c
 
 ## Dev
 
+### Setup
+
 To setup development environment, follow these steps:
 
-1. Clone repository `git clone ...`
-2. cd in to directory `cd ..`
-3. Create python venv environment `python3 -m venv venv`
-4. S
+```bash
+git clone https://github.com/sebasibarguen/fuzzy_matcher.git
+cd fuzzy_matcher
+python3 -m venv venv
+. venv/bin/activate
+```
 
+### Run 
+
+```bash
+export FLASK_APP=web/run:app
+export FLASK_ENV=development
+flask run
+```
 
 ### Run tests
 
