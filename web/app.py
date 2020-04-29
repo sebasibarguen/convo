@@ -24,7 +24,8 @@ def match():
     query_params = request.args
 
     if 'keyword' not in query_params:
-        raise InvalidParameters('<keyword> parameter is required', status_code=400)
+        raise InvalidParameters(
+            '<keyword> parameter is required', status_code=400)
 
     keyword = query_params['keyword']
 
@@ -32,5 +33,6 @@ def match():
     suggestions = matcher.match(keyword)
     end = time.perf_counter()
 
-    response = {'ok': True, 'suggestions': suggestions, 'time[s]': f'{end - start:0.4f}' }
+    response = {'ok': True, 'suggestions': suggestions,
+                'time[s]': f'{end - start:0.4f}'}
     return jsonify(response)
