@@ -4,12 +4,11 @@ import flask
 from flask import request, jsonify
 
 from fuzzy_match import FuzzyMatcher
-from errors import InvalidParameters
+from .errors import InvalidParameters
 
 
 app = flask.Flask(__name__)
 matcher = FuzzyMatcher()
-
 
 
 @app.errorhandler(InvalidParameters)
@@ -25,8 +24,7 @@ def match():
     query_params = request.args
 
     if 'keyword' not in query_params:
-        raise InvalidParameters('<keyword> parameter is required')
-
+        raise InvalidParameters('<keyword> parameter is required', status_code=400)
 
     keyword = query_params['keyword']
 
@@ -36,6 +34,3 @@ def match():
 
     response = {'ok': True, 'suggestions': suggestions, 'time[s]': f'{end - start:0.4f}' }
     return jsonify(response)
-
-
-app.run()

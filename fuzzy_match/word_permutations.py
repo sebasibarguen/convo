@@ -8,7 +8,7 @@ def permutate_word(word: str, distance: int = 1):
     """
     From a given word, returns all permutations of that word, that are :distance: apart.
     """
-    letter_groups = (''.join(p) for p in permutations(string.ascii_lowercase, distance))
+    letter_groups = [''.join(p) for p in permutations(string.ascii_lowercase, distance)]
     # Convert to list, faster to permute.
     word_list = [c for c in word]
     # Create permutation set
