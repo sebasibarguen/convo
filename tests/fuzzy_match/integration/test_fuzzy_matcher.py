@@ -1,15 +1,21 @@
-from unittest import TestCase, mock
-
-from fuzzy_match import FuzzyMatcher
+import pytest
 
 
-class TestFuzzyMatcher(TestCase):
+@pytest.fixture
+def matcher():
+    """ Pytest fixture for matcher """
+    from fuzzy_match import FuzzyMatcher
+    matcher = FuzzyMatcher()
+    yield matcher
 
-    def setUp(self):
-        self.matcher = FuzzyMatcher()
 
-    def test_matcher(self):
-        keyword = 'chool'
-        suggestions = self.matcher.match(keyword)
-        suggested_words = [s[1] for s in suggestions]
-        assert 'school' == suggested_words[0]
+@pytest.mark.parametrize(('keyword', 'suggestion'), (
+    ('hool', 'tool'),
+    ('chool', 'school'),
+    ('schoo', 'school'),
+    ('grammr', 'grammer'),
+))
+def test_keyword_match(matcher, keyword, suggestion):
+    response = matcher.match(keyword)
+    res_suggestions = [s[1] for s in response]
+    assert suggestion in res_suggestions
