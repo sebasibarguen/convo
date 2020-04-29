@@ -13,7 +13,10 @@ def matcher():
     ('hool', 'tool'),
     ('chool', 'school'),
     ('schoo', 'school'),
-    ('grammr', 'grammer'),
+    ('grammr', 'grammar'),
+    ('homm', 'home'),
+    ('homee', 'home'),
+    ('yuo', 'you'),
 ))
 def test_keyword_match(matcher, keyword, suggestion):
     response = matcher.match(keyword)

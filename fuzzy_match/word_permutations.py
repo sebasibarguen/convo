@@ -33,22 +33,23 @@ def permutate_word(word: str, distance: int = 1):
     return word_permutations
 
 
-def match(keyword: str, word_dict: dict, suggestions: int = 10, weight: str = 'simple') -> list:
+def match(keyword: str, word_dict: dict, suggestions: int = 10, weight: str = 'simple', max_depth: int = 5) -> list:
     """
     Matches keyword 
     """
     matches = []
+    word_set = set()
 
     if keyword in word_dict:
         matches.append( (0, keyword) )
 
     distance = 0
-    while len(matches) < suggestions:
+    while len(matches) < suggestions * 10 and distance < max_depth:
         distance += 1
 
         permutations = permutate_word(keyword, distance)
         for word in permutations:
-            if word in word_dict:
+            if word in word_dict and word not in word_set:
                 # Set score
                 if weight == 'simple':
                     score = distance
@@ -57,7 +58,8 @@ def match(keyword: str, word_dict: dict, suggestions: int = 10, weight: str = 's
                 elif weight == 'mixed':
                     score = (1/distance) * word_dict[word]
 
-                matches.append( (score, word) ) 
+                matches.append( (score, word) )
+                word_set.update( word )
 
     matches.sort(reverse = True)
     return matches[:suggestions]

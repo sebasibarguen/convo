@@ -20,6 +20,7 @@ def client(app):
 def test_empty_call(client):
     response = client.get('/')
     assert response.status_code == 400
+    assert b'keyword' in response.data
 
 
 @pytest.mark.parametrize(('keyword', 'suggestion'), (
@@ -30,4 +31,5 @@ def test_empty_call(client):
 def test_keyword_match(client, keyword, suggestion):
     response = client.get(f'/?keyword={keyword}')
     res_suggestions = [s[1] for s in response.json['suggestions']]
+    assert response.status_code == 200
     assert suggestion in res_suggestions
