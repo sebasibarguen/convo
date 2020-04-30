@@ -1,6 +1,6 @@
 import os
 
-from fuzzy_match import word_permutations
+from spellchecker import word_permutations
 
 
 class FuzzyMatcher:

@@ -22,7 +22,6 @@ window.onload = function() {
         let result;
         for (let i in words) {
             result = await matches(words[i])
-            console.log(result)
             if (result.includes(words[i])) {
                 suggetedText.push(words[i])
             } else {

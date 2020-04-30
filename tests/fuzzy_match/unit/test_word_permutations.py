@@ -10,7 +10,7 @@ permutation_fixtures = json.loads(open(FIXTURE_FILE_PATH, 'r').read())
 @pytest.fixture
 def matcher():
     """ Pytest fixture for matcher """
-    from fuzzy_match import word_permutations as matcher
+    from spellchecker import word_permutations as matcher
     yield matcher
 
 

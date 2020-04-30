@@ -4,7 +4,7 @@ import flask
 from flask import request, jsonify
 from flask import render_template
 
-from fuzzy_match import FuzzyMatcher
+from spellchecker import FuzzyMatcher
 from .errors import InvalidParameters
 
 
