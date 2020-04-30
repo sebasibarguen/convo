@@ -18,7 +18,7 @@ def client(app):
 
 
 def test_empty_call(client):
-    response = client.get('/')
+    response = client.get('/api')
     assert response.status_code == 400
     assert b'keyword' in response.data
 
@@ -29,7 +29,7 @@ def test_empty_call(client):
     ('schoo', 'school'),
 ))
 def test_keyword_match(client, keyword, suggestion):
-    response = client.get(f'/?keyword={keyword}')
+    response = client.get(f'/api?keyword={keyword}')
     res_suggestions = [s[1] for s in response.json['suggestions']]
     assert response.status_code == 200
     assert suggestion in res_suggestions

@@ -2,6 +2,7 @@ import time
 
 import flask
 from flask import request, jsonify
+from flask import render_template
 
 from fuzzy_match import FuzzyMatcher
 from .errors import InvalidParameters
@@ -18,8 +19,13 @@ def handle_invalid_usage(error):
     return response
 
 
-@app.route('/', methods=['GET'])
-def match():
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+
+@app.route('/api', methods=['GET'])
+def api():
 
     query_params = request.args
 
