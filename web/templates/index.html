@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1 class="subtitle">{% block title %}Demo{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form>
+        <input id="text" type="hidden" name="content">
+        <trix-editor input="text" id="editor"></trix-editor>
+    </form>
+    <p id="suggestion"></p>
+{% endblock %}
