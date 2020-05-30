@@ -11,7 +11,7 @@ from collections import Counter
 @pytest.fixture
 def spell():
     """ Pytest fixture for matcher """
-    from spellchecker import spell
+    from convo.spellchecker import spell
     yield spell
 
 def test_correction(spell):

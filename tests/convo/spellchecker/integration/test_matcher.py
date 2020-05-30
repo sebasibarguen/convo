@@ -4,7 +4,7 @@ import pytest
 @pytest.fixture
 def matcher():
     """ Pytest fixture for matcher """
-    from spellchecker import FuzzyMatcher
+    from convo.spellchecker import FuzzyMatcher
     matcher = FuzzyMatcher()
     yield matcher
 

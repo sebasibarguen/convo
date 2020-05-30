@@ -10,7 +10,7 @@ permutation_fixtures = json.loads(open(FIXTURE_FILE_PATH, 'r').read())
 @pytest.fixture
 def matcher():
     """ Pytest fixture for matcher """
-    from spellchecker import word_permutations as matcher
+    from convo.spellchecker import word_permutations as matcher
     yield matcher
 
 
