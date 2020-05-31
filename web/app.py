@@ -4,8 +4,8 @@ import flask
 from flask import request, jsonify
 from flask import render_template
 
-from spellchecker import FuzzyMatcher
-from .errors import InvalidParameters
+from convo.spellchecker import FuzzyMatcher
+from errors import InvalidParameters
 
 
 app = flask.Flask(__name__)
