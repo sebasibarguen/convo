@@ -1,3 +1,19 @@
+terraform {
+ backend "remote" {
+   organization = "sebasibarguen"
+
+   workspaces {
+     name = "convo"
+   }
+ }
+}
+
+resource "null_resource" "terraform-github-actions" {
+ triggers = {
+   value = "This resource was created using GitHub Actions!"
+ }
+}
+
 provider "heroku" {
   version = "~> 2.4"
 }
