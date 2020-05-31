@@ -1,8 +1,10 @@
 import os
+import sys
 import tempfile
 
 import pytest
 
+sys.path.append('./web')
 
 @pytest.fixture
 def app():

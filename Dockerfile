@@ -1,17 +1,21 @@
-FROM ubuntu:18.04
+FROM python:3.8
 
-RUN apt-get update -y && \
-    apt-get install -y python-pip python-dev
+RUN pip install pipenv
 
-# We copy just the requirements.txt first to leverage Docker cache
-COPY ./requirements.txt /web/requirements.txt
+WORKDIR /app/web
 
-WORKDIR /web
+ADD Pipfile Pipfile
 
-RUN pip install -r requirements.txt
+ADD Pipfile.lock Pipfile.lock
 
-COPY . /web
+RUN pipenv install --system --skip-lock
 
-ENTRYPOINT [ "python" ]
+RUN pip install gunicorn[gevent]
 
-CMD [ "web/run.py" ]
+ADD . /app
+
+ADD ./convo /app/web/convo
+
+EXPOSE 5000
+
+CMD gunicorn --worker-class gevent --workers 8 --bind 0.0.0.0:5000 app:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info

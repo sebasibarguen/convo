@@ -5,7 +5,7 @@ from flask import request, jsonify
 from flask import render_template
 
 from convo.spellchecker import FuzzyMatcher
-from .errors import InvalidParameters
+from errors import InvalidParameters
 
 
 app = flask.Flask(__name__)
