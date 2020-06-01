@@ -18,12 +18,12 @@ provider "heroku" {
   version = "~> 2.4"
 }
 
-variable "app_name" {
-  description = "Convo API"
+locals {
+  app_name = "convo-apix"
 }
 
 resource "heroku_app" "app" {
-  name   = var.app_name
+  name   = local.app_name
   region = "us"
 
   stack = "container"
