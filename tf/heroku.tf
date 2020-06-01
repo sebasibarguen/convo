@@ -1,29 +1,13 @@
-terraform {
- backend "remote" {
-   organization = "sebasibarguen"
-
-   workspaces {
-     name = "convo"
-   }
- }
-}
-
-resource "null_resource" "terraform-github-actions" {
- triggers = {
-   value = "This resource was created using GitHub Actions!"
- }
-}
-
 provider "heroku" {
   version = "~> 2.4"
 }
 
-variable "app_name" {
-  description = "Convo API"
+locals {
+  app_name = "convo-apix"
 }
 
 resource "heroku_app" "app" {
-  name   = var.app_name
+  name   = local.app_name
   region = "us"
 
   stack = "container"
@@ -43,7 +27,7 @@ resource "heroku_formation" "app" {
   app        = heroku_app.app.name
   type       = "web"
   quantity   = 1
-  size       = "Standard-1x"
+  size       = "free"
   depends_on = [heroku_build.app]
 }
 
