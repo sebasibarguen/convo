@@ -4,11 +4,11 @@ provider "aws" {
 }
 
 terraform {
- backend "s3" {
-   bucket = "convo-deploy"
-   key = "tf/terraform.tfstate"
-   region = "us-east-1"
- }
+  backend "s3" {
+    bucket = "convo-deploy"
+    key    = "tf/terraform.tfstate"
+    region = "us-east-1"
+  }
 }
 
 resource "aws_s3_bucket" "terraform_state" {
