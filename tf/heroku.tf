@@ -1,19 +1,3 @@
-terraform {
- backend "remote" {
-   organization = "sebasibarguen"
-
-   workspaces {
-     name = "convo"
-   }
- }
-}
-
-resource "null_resource" "terraform-github-actions" {
- triggers = {
-   value = "This resource was created using GitHub Actions!"
- }
-}
-
 provider "heroku" {
   version = "~> 2.4"
 }
@@ -43,7 +27,7 @@ resource "heroku_formation" "app" {
   app        = heroku_app.app.name
   type       = "web"
   quantity   = 1
-  size       = "Standard-1x"
+  size       = "free"
   depends_on = [heroku_build.app]
 }
 
